@@ -1,12 +1,9 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.impl.service;
+package ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock;
 
 import org.springframework.stereotype.Component;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.StatisticPerDateDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.account.AccountCountPerAge;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.account.AccountStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.account.AccountStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticResponseDto;
+import ru.skillbox.diplom.group35.library.core.dto.statistic.StatisticPerDateDto;
+import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticResponseDto;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -20,11 +17,11 @@ import java.util.Random;
  */
 
 @Component
-public class MockCommentStatistic {
+public class MockLikeStatistic {
     private Random random = new Random();
 
-    public CommentStatisticResponseDto getStatistic(CommentStatisticRequestDto requestDto) {
-        CommentStatisticResponseDto responseDto = new CommentStatisticResponseDto();
+    public LikeStatisticResponseDto getStatistic(LikeStatisticRequestDto requestDto) {
+        LikeStatisticResponseDto responseDto = new LikeStatisticResponseDto();
         responseDto.setDate(requestDto.getDate());
         responseDto.setCount(random.nextInt(1000) + 500);
         responseDto.setCountPerMonth(countPerMonthGenerator(requestDto.getFirstMonth(), requestDto.getLastMonth()));

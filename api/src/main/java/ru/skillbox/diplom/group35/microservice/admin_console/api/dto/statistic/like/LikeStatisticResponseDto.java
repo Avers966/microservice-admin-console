@@ -3,7 +3,7 @@ package ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.StatisticPerDateDto;
+import ru.skillbox.diplom.group35.library.core.dto.statistic.StatisticPerDateDto;
 
 import java.util.List;
 

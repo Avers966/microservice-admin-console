@@ -3,24 +3,22 @@ package ru.skillbox.diplom.group35.microservice.admin_console.impl.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillbox.diplom.group35.microservice.account.api.client.AccountFeignClient;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.account.AccountCountPerAge;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.StatisticPerDateDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.account.AccountStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.account.AccountStatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticResponseDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticResponseDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticResponseDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock.MockCommentStatistic;
+import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock.MockLikeStatistic;
+import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock.MockPostStatistic;
 
 import javax.transaction.Transactional;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 @Slf4j
 @Service
@@ -29,13 +27,14 @@ import java.util.Random;
 public class StatisticService {
 
     private final AccountFeignClient accountFeignClient;
-    private final MockAccountStatistic mockAccountStatistic;
     private final MockCommentStatistic mockCommentStatistic;
     private final MockLikeStatistic mockLikeStatistic;
     private final MockPostStatistic mockPostStatistic;
 
     public AccountStatisticResponseDto getAccountStatistic(AccountStatisticRequestDto accountStatisticRequestDto) {
-        return mockAccountStatistic.getStatistic(accountStatisticRequestDto);
+        ResponseEntity<AccountStatisticResponseDto> statisticFound =
+                accountFeignClient.getAccountStatistic(accountStatisticRequestDto);
+        return statisticFound.getBody();
     }
 
     public CommentStatisticResponseDto getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto) {
@@ -49,6 +48,4 @@ public class StatisticService {
     public PostStatisticResponseDto getPostStatistic(PostStatisticRequestDto postStatisticRequestDto) {
         return mockPostStatistic.getStatistic(postStatisticRequestDto);
     }
-
-
 }

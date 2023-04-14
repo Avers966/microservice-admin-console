@@ -1,9 +1,7 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.impl.service;
+package ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock;
 
 import org.springframework.stereotype.Component;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.StatisticPerDateDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticResponseDto;
+import ru.skillbox.diplom.group35.library.core.dto.statistic.StatisticPerDateDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticResponseDto;
 

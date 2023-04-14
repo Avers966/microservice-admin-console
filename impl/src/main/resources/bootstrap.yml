@@ -6,13 +6,16 @@ spring:
     kubernetes:
       secrets:
         sources:
-          - name: microservice-admin-console
+          - namespace: skillbox-alpha
+            name: microservice-admin-console
       config:
         sources:
-          - name: library-core
-          - name: microservice-admin-console
+          - namespace: skillbox-alpha
+            name: microservice-admin-console
       reload:
         enabled: true
+        strategy: refresh
+        mode: event
 
 management:
   endpoint:

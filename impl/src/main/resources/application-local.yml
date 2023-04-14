@@ -9,10 +9,10 @@ spring:
       name: admin-console
       password: admin-console
   liquibase:
-    enabled: false
+    enabled: true
     drop-first: false
     change-log: classpath:database-admin-console-changelog.xml
-    default_schema: admin-console
+    default_schema: admin_console
 
   datasource:
     url: jdbc:postgresql://localhost:5432/skillbox
@@ -28,7 +28,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQL10Dialect
         format_sql: true
-        default_schema: admin-console
+        default_schema: admin_console
     open-in-view: false
 
   servlet:
@@ -43,6 +43,15 @@ cloudinary:
     cloud_name: da0wr9y51
     api_key: 439542312243829
     api_secret: FkPFGJDXGZAc3M5IqmIbFCQLXQw
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: '/api/v1/admin-console/v3/api-docs'
+  swagger-ui:
+    path: '/api/v1/admin-console/swagger-ui'
+    doc-expansion: none
+    disable-swagger-default-url: true
 
 logging:
   level:
