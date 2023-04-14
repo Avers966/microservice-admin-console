@@ -13,7 +13,6 @@
     <name>SKILLBOX :: DIPLOM :: microservice admin console :: api</name>
     <description>microservice admin console api</description>
     <artifactId>microservice-admin-console-api</artifactId>
-
     <build>
         <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
         <testSourceDirectory>${project.basedir}/src/test/java</testSourceDirectory>
