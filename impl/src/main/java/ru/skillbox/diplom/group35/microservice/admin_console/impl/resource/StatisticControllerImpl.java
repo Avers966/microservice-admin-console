@@ -14,7 +14,6 @@ import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatistic
 import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
 
-
 @Slf4j
 @RestController
 @EnableExceptionHandler
