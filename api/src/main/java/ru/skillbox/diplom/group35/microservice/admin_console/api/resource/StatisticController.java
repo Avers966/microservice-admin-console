@@ -10,12 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
 
 @SecurityRequirement(name = "JWT")
 @Tag(name = "Statistic service", description = "Работа со статистикой")
@@ -31,14 +29,14 @@ public interface StatisticController {
 
     @GetMapping("/statistic/comment")
     @Operation(description = "Получение статистики комментариев")
-    ResponseEntity<CommentStatisticResponseDto> getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto);
+    ResponseEntity<StatisticResponseDto> getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto);
 
     @GetMapping("/statistic/like")
     @Operation(description = "Получение статистики лайков")
-    ResponseEntity<LikeStatisticResponseDto> getLikeStatistic(LikeStatisticRequestDto likeStatisticRequestDto);
+    ResponseEntity<StatisticResponseDto> getLikeStatistic(LikeStatisticRequestDto likeStatisticRequestDto);
 
     @GetMapping("/statistic/post")
     @Operation(description = "Получение статистики постов")
-    ResponseEntity<PostStatisticResponseDto> getPostStatistic(PostStatisticRequestDto postStatisticRequestDto);
+    ResponseEntity<StatisticResponseDto> getPostStatistic(PostStatisticRequestDto postStatisticRequestDto);
 
 }

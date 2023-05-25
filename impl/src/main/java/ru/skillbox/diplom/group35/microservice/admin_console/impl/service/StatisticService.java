@@ -8,15 +8,11 @@ import org.springframework.stereotype.Service;
 import ru.skillbox.diplom.group35.microservice.account.api.client.AccountFeignClient;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.comment.CommentStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.like.LikeStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.statistic.post.PostStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock.MockCommentStatistic;
-import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock.MockLikeStatistic;
-import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.mock.MockPostStatistic;
+import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.resource.client.PostFeignClient;
 
 import javax.transaction.Transactional;
 
@@ -27,9 +23,7 @@ import javax.transaction.Transactional;
 public class StatisticService {
 
     private final AccountFeignClient accountFeignClient;
-    private final MockCommentStatistic mockCommentStatistic;
-    private final MockLikeStatistic mockLikeStatistic;
-    private final MockPostStatistic mockPostStatistic;
+    private final PostFeignClient postFeignClient;
 
     public AccountStatisticResponseDto getAccountStatistic(AccountStatisticRequestDto accountStatisticRequestDto) {
         ResponseEntity<AccountStatisticResponseDto> statisticFound =
@@ -37,15 +31,21 @@ public class StatisticService {
         return statisticFound.getBody();
     }
 
-    public CommentStatisticResponseDto getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto) {
-        return mockCommentStatistic.getStatistic(commentStatisticRequestDto);
+    public StatisticResponseDto getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto) {
+        ResponseEntity<StatisticResponseDto> statisticFound =
+                postFeignClient.getCommentStatistic(commentStatisticRequestDto);
+        return statisticFound.getBody();
     }
 
-    public LikeStatisticResponseDto getLikeStatistic(LikeStatisticRequestDto likeStatisticRequestDto) {
-        return mockLikeStatistic.getStatistic(likeStatisticRequestDto);
+    public StatisticResponseDto getLikeStatistic(LikeStatisticRequestDto likeStatisticRequestDto) {
+        ResponseEntity<StatisticResponseDto> statisticFound =
+                postFeignClient.getLikeStatistic(likeStatisticRequestDto);
+        return statisticFound.getBody();
     }
 
-    public PostStatisticResponseDto getPostStatistic(PostStatisticRequestDto postStatisticRequestDto) {
-        return mockPostStatistic.getStatistic(postStatisticRequestDto);
+    public StatisticResponseDto getPostStatistic(PostStatisticRequestDto postStatisticRequestDto) {
+        ResponseEntity<StatisticResponseDto> statisticFound =
+                postFeignClient.getPostStatistic(postStatisticRequestDto);
+        return statisticFound.getBody();
     }
 }

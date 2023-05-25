@@ -26,7 +26,9 @@ import javax.validation.constraints.Size;
 @ApiResponse(responseCode = "200", description = "Successful operation")
 @ApiResponse(responseCode = "400", description = "Bad request", content = @Content)
 @ApiResponse(responseCode = "401", description = "Unauthorized", content = @Content)
-@RequestMapping(value = "/api/v1/storage", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1/storage",
+        consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+        produces = MediaType.APPLICATION_JSON_VALUE)
 public interface StorageController {
     @PostMapping
     @Operation(description = "Получение ссылки на загруженный файл")
