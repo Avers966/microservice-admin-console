@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ru.skillbox.diplom.group35.microservice.account.api.client.AccountFeignClient;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticRequestDto;
@@ -20,6 +21,7 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@PreAuthorize("hasAuthority('SCOPE_ROLE_ADMIN')")
 public class StatisticService {
 
     private final AccountFeignClient accountFeignClient;
