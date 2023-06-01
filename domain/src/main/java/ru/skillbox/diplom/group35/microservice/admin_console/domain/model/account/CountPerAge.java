@@ -8,7 +8,7 @@ import ru.skillbox.diplom.group35.library.core.model.base.BaseEntity;
 import javax.persistence.*;
 
 /**
- * AccountAgeStatistic
+ * CountPerAge
  *
  * @author Georgii Vinogradov
  */
@@ -26,7 +26,7 @@ public class CountPerAge extends BaseEntity {
     @Column(name = "count")
     private Integer count;
 
-//    @ManyToOne
-//    @JoinColumn(name = "account_statistic_id", insertable = false, updatable = false)
-//    private AccountStatistic accountStatistic;
+    @ManyToOne
+    @JoinColumn(name = "account_statistic_id", nullable = false)
+    private AccountStatistic accountStatistic;
 }

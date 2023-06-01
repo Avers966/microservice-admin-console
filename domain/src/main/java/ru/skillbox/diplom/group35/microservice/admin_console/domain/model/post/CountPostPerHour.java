@@ -1,4 +1,4 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.domain.model.account;
+package ru.skillbox.diplom.group35.microservice.admin_console.domain.model.post;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,25 +9,25 @@ import javax.persistence.*;
 import java.time.ZonedDateTime;
 
 /**
- * AccountMonthStatistic
+ * CountPerHour
  *
  * @author Georgii Vinogradov
  */
-
 
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "account_month_statistic")
-public class AccountMonthStatistic extends BaseEntity {
+@Table(name = "count_post_per_hour")
+public class CountPostPerHour extends BaseEntity {
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private ZonedDateTime date;
 
     @Column(name = "count")
     private Integer count;
 
-    @Column(name = "deleted_count")
-    private Integer deletedCount;
+    @ManyToOne
+    @JoinColumn(name = "post_statistic_id", nullable = false)
+    private PostStatistic postStatistic;
 }

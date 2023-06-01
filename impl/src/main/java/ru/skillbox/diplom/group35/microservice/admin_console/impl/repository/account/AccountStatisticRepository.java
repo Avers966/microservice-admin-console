@@ -4,6 +4,9 @@ import org.springframework.stereotype.Repository;
 import ru.skillbox.diplom.group35.library.core.repository.BaseRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.account.AccountStatistic;
 
+import java.time.ZonedDateTime;
+import java.util.List;
+
 /**
  * AccountStatisticRepository
  *
@@ -12,4 +15,5 @@ import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.accoun
 
 @Repository
 public interface AccountStatisticRepository extends BaseRepository<AccountStatistic> {
+    List<AccountStatistic> findByDateBetween(ZonedDateTime startOfDay, ZonedDateTime endOfDay);
 }
