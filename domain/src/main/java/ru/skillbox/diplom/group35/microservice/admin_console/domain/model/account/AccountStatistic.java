@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * StatisticPerDate
+ * AccountStatistic
  *
  * @author Georgii Vinogradov
  */
@@ -30,9 +30,7 @@ public class AccountStatistic extends BaseEntity {
     @Column(name = "count")
     private Integer count;
 
-    @OneToMany
-    @JoinColumn(name = "account_statistic_id")
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    private Set<CountPerAge> countPerAge;
-
+    @Column(name = "count_per_age")
+    @OneToMany(mappedBy = "accountStatistic")
+    private List<CountPerAge> countPerAge;
 }

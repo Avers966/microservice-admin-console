@@ -11,6 +11,8 @@ import ru.skillbox.diplom.group35.microservice.account.api.client.AccountFeignCl
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.storage.StorageDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.utils.CloudinaryUtil;
 
+import javax.transaction.Transactional;
+
 
 /**
  * StorageService
@@ -20,6 +22,7 @@ import ru.skillbox.diplom.group35.microservice.admin_console.impl.utils.Cloudina
 
 @Slf4j
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class StorageService {
 

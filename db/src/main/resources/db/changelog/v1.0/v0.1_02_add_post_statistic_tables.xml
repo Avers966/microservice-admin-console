@@ -5,8 +5,8 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
 
-    <changeSet id="create-table-account-statistic" author="Georgiy Vinogradov">
-        <createTable tableName="account_statistic">
+    <changeSet id="create-table-post-statistic" author="Georgiy Vinogradov">
+        <createTable tableName="post_statistic">
             <column name="id" type="uuid">
                 <constraints unique="true"/>
             </column>
@@ -20,22 +20,22 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="create-table-count-per-age" author="Georgiy Vinogradov">
-        <createTable tableName="count_per_age">
+    <changeSet id="create-table-count-post_per-hour" author="Georgiy Vinogradov">
+        <createTable tableName="count_post_per_hour">
             <column name="id" type="uuid">
                 <constraints nullable="false" unique="true"/>
             </column>
             <column name="is_deleted" type="boolean"/>
-            <column name="age" type="int"/>
+            <column name="date" type="timestamp with time zone"/>
             <column name="count" type="int"/>
-            <column name="account_statistic_id" type="uuid" >
+            <column name="post_statistic_id" type="uuid" >
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
 
-    <changeSet id="create-table-account-month-statistic" author="Georgiy Vinogradov">
-        <createTable tableName="account_month_statistic">
+    <changeSet id="create-table-post-month-statistic" author="Georgiy Vinogradov">
+        <createTable tableName="post_month_statistic">
             <column name="id" type="uuid">
                 <constraints unique="true"/>
             </column>
@@ -58,9 +58,9 @@
 
     <!-- FOREIGN KEYS -->
     <changeSet id="create-foreign-key" author="Georgiy Vinogradov">
-        <addForeignKeyConstraint baseColumnNames="account_statistic_id" baseTableName="count_per_age"
-                                 constraintName="fk_age_statistic" referencedColumnNames="id"
-                                 referencedTableName="account_statistic"/>
+        <addForeignKeyConstraint baseColumnNames="post_statistic_id" baseTableName="count_post_per_hour"
+                                 constraintName="fk_post_hour_statistic" referencedColumnNames="id"
+                                 referencedTableName="post_statistic"/>
     </changeSet>
     <!-- END FOREIGN KEYS -->
 
