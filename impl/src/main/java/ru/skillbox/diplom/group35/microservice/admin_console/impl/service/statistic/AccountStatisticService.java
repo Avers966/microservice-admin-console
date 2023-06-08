@@ -1,4 +1,4 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.impl.service;
+package ru.skillbox.diplom.group35.microservice.admin_console.impl.service.statistic;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;

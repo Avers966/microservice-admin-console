@@ -8,7 +8,7 @@ import ru.skillbox.diplom.group35.library.core.annotation.EnableExceptionHandler
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticResponseDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.resource.StatisticController;
-import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.StatisticService;
+import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.statistic.StatisticService;
 import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
 import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;

@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.skillbox.diplom.group35.library.core.annotation.EnableExceptionHandler;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.storage.StorageDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.resource.StorageController;
-import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.StorageService;
+import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.storage.StorageService;
 
 /**
  * StorageControllerImpl
