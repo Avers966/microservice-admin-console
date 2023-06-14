@@ -1,6 +1,5 @@
 package ru.skillbox.diplom.group35.microservice.admin_console.impl.mapper.account;
 
-import org.hibernate.annotations.Source;
 import org.mapstruct.*;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountCountPerAge;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.account.AccountStatistic;

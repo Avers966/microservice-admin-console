@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import ru.skillbox.diplom.group35.library.core.exception.UploadImageException;
-import ru.skillbox.diplom.group35.microservice.account.api.client.AccountFeignClient;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.dto.storage.StorageDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.utils.CloudinaryUtil;
 

@@ -2,7 +2,6 @@ package ru.skillbox.diplom.group35.microservice.admin_console.impl.mapper.post;
 
 import org.mapstruct.Mapper;
 import ru.skillbox.diplom.group35.library.core.dto.statistic.StatisticPerDateDto;
-import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.account.AccountMonthStatistic;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.post.PostMonthStatistic;
 
 import java.util.List;

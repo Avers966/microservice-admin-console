@@ -1,4 +1,4 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.domain.model.post;
+package ru.skillbox.diplom.group35.microservice.admin_console.domain.model.comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 /**
- * PostStatistic
+ * CommentStatistic
  *
  * @author Georgii Vinogradov
  */
@@ -22,8 +22,8 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "post_statistic")
-public class PostStatistic extends BaseEntity {
+@Table(name = "comment_statistic")
+public class CommentStatistic extends BaseEntity {
 
     @Column(name = "date", nullable = false)
     private ZonedDateTime date;
@@ -31,7 +31,7 @@ public class PostStatistic extends BaseEntity {
     @Column(name = "count")
     private Integer count;
 
-    @Column(name = "count_post_per_hour")
-    @OneToMany(mappedBy = "postStatistic")
-    private List<CountPostPerHour> countPostPerHour;
+    @Column(name = "count_comment_per_hour")
+    @OneToMany(mappedBy = "commentStatistic")
+    private List<CountCommentPerHour> countCommentPerHour;
 }

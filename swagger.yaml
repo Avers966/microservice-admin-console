@@ -9,11 +9,11 @@
   "tags": [
     {
       "name": "Storage service",
-      "description": "Работа с файлами"
+      "description": "Р Р°Р±РѕС‚Р° СЃ С„Р°Р№Р»Р°РјРё"
     },
     {
       "name": "Statistic service",
-      "description": "Работа со статистикой"
+      "description": "Р Р°Р±РѕС‚Р° СЃРѕ СЃС‚Р°С‚РёСЃС‚РёРєРѕР№"
     }
   ],
   "paths": {
@@ -22,7 +22,7 @@
         "tags": [
           "Storage service"
         ],
-        "description": "Получение ссылки на загруженный файл",
+        "description": "РџРѕР»СѓС‡РµРЅРёРµ СЃСЃС‹Р»РєРё РЅР° Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ С„Р°Р№Р»",
         "operationId": "upload",
         "requestBody": {
           "content": {
@@ -72,7 +72,7 @@
         "tags": [
           "Statistic service"
         ],
-        "description": "Получение статистики постов",
+        "description": "РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё РїРѕСЃС‚РѕРІ",
         "operationId": "getPostStatistic",
         "parameters": [
           {
@@ -114,7 +114,7 @@
         "tags": [
           "Statistic service"
         ],
-        "description": "Получение статистики лайков",
+        "description": "РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё Р»Р°Р№РєРѕРІ",
         "operationId": "getLikeStatistic",
         "parameters": [
           {
@@ -156,7 +156,7 @@
         "tags": [
           "Statistic service"
         ],
-        "description": "Получение статистики комментариев",
+        "description": "РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё РєРѕРјРјРµРЅС‚Р°СЂРёРµРІ",
         "operationId": "getCommentStatistic",
         "parameters": [
           {
@@ -198,7 +198,7 @@
         "tags": [
           "Statistic service"
         ],
-        "description": "Получение статистики аккаунтов",
+        "description": "РџРѕР»СѓС‡РµРЅРёРµ СЃС‚Р°С‚РёСЃС‚РёРєРё Р°РєРєР°СѓРЅС‚РѕРІ",
         "operationId": "getAccountStatistic",
         "parameters": [
           {
@@ -243,10 +243,10 @@
         "properties": {
           "fileName": {
             "type": "string",
-            "description": "Ссылка на файл в облаке"
+            "description": "РЎСЃС‹Р»РєР° РЅР° С„Р°Р№Р» РІ РѕР±Р»Р°РєРµ"
           }
         },
-        "description": "Dto загруженного файла"
+        "description": "Dto Р·Р°РіСЂСѓР¶РµРЅРЅРѕРіРѕ С„Р°Р№Р»Р°"
       },
       "PostStatisticRequestDto": {
         "type": "object",

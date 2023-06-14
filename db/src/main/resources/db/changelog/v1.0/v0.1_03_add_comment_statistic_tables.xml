@@ -1,0 +1,70 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+
+    <changeSet id="create-table-comment-statistic" author="Georgiy Vinogradov">
+        <createTable tableName="comment_statistic">
+            <column name="id" type="uuid">
+                <constraints unique="true"/>
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="count" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-count-comment_per-hour" author="Georgiy Vinogradov">
+        <createTable tableName="count_comment_per_hour">
+            <column name="id" type="uuid">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="is_deleted" type="boolean"/>
+            <column name="date" type="timestamp with time zone"/>
+            <column name="count" type="int"/>
+            <column name="comment_statistic_id" type="uuid" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create-table-comment-month-statistic" author="Georgiy Vinogradov">
+        <createTable tableName="comment_month_statistic">
+            <column name="id" type="uuid">
+                <constraints unique="true"/>
+            </column>
+            <column name="is_deleted" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date" type="timestamp with time zone">
+                <constraints nullable="false"/>
+            </column>
+            <column name="count" type="int"/>
+            <column name="deleted_count" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <!-- TABLES -->
+    <!-- END TABLES -->
+
+    <!-- INDEXES -->
+    <!-- END INDEXES -->
+
+    <!-- FOREIGN KEYS -->
+    <changeSet id="create-foreign-key" author="Georgiy Vinogradov">
+        <addForeignKeyConstraint baseColumnNames="comment_statistic_id" baseTableName="count_comment_per_hour"
+                                 constraintName="fk_comment_hour_statistic" referencedColumnNames="id"
+                                 referencedTableName="comment_statistic"/>
+    </changeSet>
+    <!-- END FOREIGN KEYS -->
+
+    <!-- SEQUENCES -->
+    <!-- EDN SEQUENCES -->
+
+</databaseChangeLog>
