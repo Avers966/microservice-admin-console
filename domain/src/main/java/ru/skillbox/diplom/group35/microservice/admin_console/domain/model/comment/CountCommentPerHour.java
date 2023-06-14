@@ -1,4 +1,4 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.domain.model.account;
+package ru.skillbox.diplom.group35.microservice.admin_console.domain.model.comment;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,10 +7,9 @@ import ru.skillbox.diplom.group35.library.core.model.base.BaseEntity;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 /**
- * AccountStatistic
+ * CountCommentPerHour
  *
  * @author Georgii Vinogradov
  */
@@ -19,16 +18,16 @@ import java.util.List;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "account_statistic")
-public class AccountStatistic extends BaseEntity {
+@Table(name = "count_comment_per_hour")
+public class CountCommentPerHour extends BaseEntity {
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private ZonedDateTime date;
 
     @Column(name = "count")
     private Integer count;
 
-    @Column(name = "count_per_age")
-    @OneToMany(mappedBy = "accountStatistic")
-    private List<CountPerAge> countPerAge;
+    @ManyToOne
+    @JoinColumn(name = "comment_statistic_id", nullable = false)
+    private CommentStatistic commentStatistic;
 }

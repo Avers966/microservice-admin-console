@@ -2,7 +2,6 @@ package ru.skillbox.diplom.group35.microservice.admin_console.impl.service.sched
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillbox.diplom.group35.library.core.security.config.TechnicalUserConfig;
