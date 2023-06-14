@@ -32,6 +32,29 @@ spring:
       max-request-size: 10MB
       resolve-lazily: true
 
+  quartz:
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: never
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceId: AUTO
+          jobStore:
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate
+            useProperties: false
+            tablePrefix: admin_console.QRTZ_
+            misfireThreshold: 60000
+            isClustered: false
+          threadPool:
+            threadCount: 1
+
+scheduler:
+  name: BirthDayNotificationJob
+  cron: "0 0 0 * * ?"
+  className: ru.skillbox.diplom.group35.microservice.admin_console.impl.service.scheduler.jobs.BirthDayNotificationJob
+
 cloudinary:
   config:
     cloud_name: da0wr9y51

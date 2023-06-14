@@ -1,4 +1,4 @@
-package ru.skillbox.diplom.group35.microservice.admin_console.impl.service;
+package ru.skillbox.diplom.group35.microservice.admin_console.impl.service.storage;
 
 import com.cloudinary.utils.ObjectUtils;
 import lombok.RequiredArgsConstructor;
