@@ -43,12 +43,14 @@ public class CommentStatisticService {
 
     public CommentStatistic findCommentStatistic(PostStatisticRequestDto requestDto) {
         ZonedDateTime startCurrentDay = dateTimeUtils.startDay(ZonedDateTime.now());
+        ZonedDateTime startMonth = dateTimeUtils.startMonth(requestDto.getFirstMonth());
+        ZonedDateTime endMonth = dateTimeUtils.endMonth(requestDto.getLastMonth());
         Optional<CommentStatistic> foundCommentStatistic = loadCommentStatistic(requestDto.getDate());
         if (foundCommentStatistic.isPresent()) {
             return foundCommentStatistic.get();
         }
-        StatisticResponseDto oneMonthStatistic = getRemoteCommentStatistic(startCurrentDay,
-                startCurrentDay, requestDto.getDate());
+        StatisticResponseDto oneMonthStatistic = getRemoteCommentStatistic(startMonth,
+                endMonth, requestDto.getDate());
         CommentStatistic commentStatistic = commentStatisticMapper.map(oneMonthStatistic, false);
         if (requestDto.getDate().isBefore(startCurrentDay)) {
             commentStatistic = commentStatisticRepository.save(commentStatistic);
