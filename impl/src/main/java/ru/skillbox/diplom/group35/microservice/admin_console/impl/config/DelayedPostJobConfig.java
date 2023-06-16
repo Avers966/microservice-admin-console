@@ -10,27 +10,27 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class BirthDayNotificationJobConfig {
-    private final BirthDayInfoConfig birthDayInfoConfig;
+public class DelayedPostJobConfig {
+    private final DelayedPostInfoConfig delayedPostInfoConfig;
 
     @Bean
-    JobDetail initBirthDayJob() {
-        Class<? extends QuartzJobBean> jobClass = getClass(birthDayInfoConfig.getClassName());
+    JobDetail initDelayedPostJob() {
+        Class<? extends QuartzJobBean> jobClass = getClass(delayedPostInfoConfig.getClassName());
         return JobBuilder
                 .newJob(jobClass)
-                .withIdentity(birthDayInfoConfig.getName())
+                .withIdentity(delayedPostInfoConfig.getName())
                 .storeDurably()
                 .requestRecovery(true)
                 .build();
     }
 
     @Bean
-    Trigger initBirthDayTrigger() {
+    Trigger initDelayedPostTrigger() {
         return TriggerBuilder
                 .newTrigger()
-                .forJob(birthDayInfoConfig.getName())
-                .withIdentity(birthDayInfoConfig.getName())
-                .withSchedule(CronScheduleBuilder.cronSchedule(birthDayInfoConfig.getCron()))
+                .forJob(delayedPostInfoConfig.getName())
+                .withIdentity(delayedPostInfoConfig.getName())
+                .withSchedule(CronScheduleBuilder.cronSchedule(delayedPostInfoConfig.getCron()))
                 .build();
     }
 

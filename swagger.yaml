@@ -118,11 +118,11 @@
         "operationId": "getLikeStatistic",
         "parameters": [
           {
-            "name": "likeStatisticRequestDto",
+            "name": "PostStatisticRequestDto",
             "in": "query",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/LikeStatisticRequestDto"
+              "$ref": "#/components/schemas/PostStatisticRequestDto"
             }
           }
         ],
@@ -160,11 +160,11 @@
         "operationId": "getCommentStatistic",
         "parameters": [
           {
-            "name": "commentStatisticRequestDto",
+            "name": "PostStatisticRequestDto",
             "in": "query",
             "required": true,
             "schema": {
-              "$ref": "#/components/schemas/CommentStatisticRequestDto"
+              "$ref": "#/components/schemas/PostStatisticRequestDto"
             }
           }
         ],
@@ -303,7 +303,7 @@
           }
         }
       },
-      "LikeStatisticRequestDto": {
+      "PostStatisticRequestDto": {
         "type": "object",
         "properties": {
           "date": {
@@ -320,7 +320,7 @@
           }
         }
       },
-      "CommentStatisticRequestDto": {
+      "PostStatisticRequestDto": {
         "type": "object",
         "properties": {
           "date": {

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ru.skillbox.diplom.group35.library.core.security.config.TechnicalUserConfig;
 import ru.skillbox.diplom.group35.microservice.account.api.client.AccountFeignClient;
+import ru.skillbox.diplom.group35.microservice.post.resource.client.PostFeignClient;
 
 import javax.transaction.Transactional;
 
@@ -15,6 +16,7 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class JobsService {
     private final AccountFeignClient accountFeignClient;
+    private final PostFeignClient postFeignClient;
     private final TechnicalUserConfig technicalUserConfig;
 
     public void callBirthDayNotification() {
@@ -27,5 +29,18 @@ public class JobsService {
         }
         log.info("Job execution success");
     }
+
+    public void callDelayJob() {
+        try {
+            ResponseEntity response = technicalUserConfig
+                    .executeByTechnicalUser(() -> postFeignClient.getDelayedPost());
+        } catch (Exception e) {
+            log.error("Job execution return an error: {}", e.getMessage());
+            return;
+        }
+        log.info("Job execution success");
+    }
+
+
 
 }

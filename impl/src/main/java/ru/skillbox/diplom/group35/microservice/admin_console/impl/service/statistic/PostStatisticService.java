@@ -16,9 +16,9 @@ import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.pos
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.post.PostMonthStatisticRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.post.PostStatisticRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.utils.DateTimeUtils;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.resource.client.PostFeignClient;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.post.resource.client.StatisticFeignClient;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class PostStatisticService {
     private final PostMonthStatisticMapper postMonthStatisticMapper;
     private final PostStatisticRepository postStatisticRepository;
     private final CountPostPerHourRepository countPostPerHourRepository;
-    private final PostFeignClient postFeignClient;
+    private final StatisticFeignClient statisticFeignClient;
     private final DateTimeUtils dateTimeUtils;
 
     public PostStatistic findPostStatistic(PostStatisticRequestDto requestDto) {
@@ -87,7 +87,7 @@ public class PostStatisticService {
         requestDto.setDate(dateTime);
         requestDto.setFirstMonth(firstMonth);
         requestDto.setLastMonth(lastMonth);
-        return postFeignClient.getPostStatistic(requestDto).getBody();
+        return statisticFeignClient.getPostStatistic(requestDto).getBody();
     }
 
     public List<PostMonthStatistic> loadPostMonthStatistic(ZonedDateTime firstMonth,

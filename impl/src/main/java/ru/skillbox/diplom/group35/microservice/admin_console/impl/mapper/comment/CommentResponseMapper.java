@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.comment.CommentMonthStatistic;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.comment.CommentStatistic;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public abstract class CommentResponseMapper {
     @Autowired
     private CommentMonthStatisticMapper commentMonthStatisticMapper;
 
-    public StatisticResponseDto map(CommentStatisticRequestDto requestDto,
+    public StatisticResponseDto map(PostStatisticRequestDto requestDto,
                                     List<CommentMonthStatistic> commentMonthStatistics,
                                     CommentStatistic commentStatistic) {
         StatisticResponseDto responseDto = new StatisticResponseDto();

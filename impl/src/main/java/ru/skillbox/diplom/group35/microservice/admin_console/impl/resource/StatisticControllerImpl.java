@@ -9,10 +9,8 @@ import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticR
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticResponseDto;
 import ru.skillbox.diplom.group35.microservice.admin_console.api.resource.StatisticController;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.service.statistic.StatisticService;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
 
 @Slf4j
 @RestController
@@ -29,15 +27,15 @@ public class StatisticControllerImpl implements StatisticController {
     }
 
     @Override
-    public ResponseEntity<StatisticResponseDto> getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto) {
+    public ResponseEntity<StatisticResponseDto> getCommentStatistic(PostStatisticRequestDto postStatisticRequestDto) {
         log.info("get comment statistic");
-        return ResponseEntity.ok(statisticService.getCommentStatistic(commentStatisticRequestDto));
+        return ResponseEntity.ok(statisticService.getCommentStatistic(postStatisticRequestDto));
     }
 
     @Override
-    public ResponseEntity<StatisticResponseDto> getLikeStatistic(LikeStatisticRequestDto likeStatisticRequestDto) {
+    public ResponseEntity<StatisticResponseDto> getLikeStatistic(PostStatisticRequestDto postStatisticRequestDto) {
         log.info("get like statistic");
-        return ResponseEntity.ok(statisticService.getLikeStatistic(likeStatisticRequestDto));
+        return ResponseEntity.ok(statisticService.getLikeStatistic(postStatisticRequestDto));
     }
 
     @Override

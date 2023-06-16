@@ -19,10 +19,8 @@ import ru.skillbox.diplom.group35.microservice.admin_console.impl.mapper.account
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.mapper.comment.CommentResponseMapper;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.mapper.like.LikeResponseMapper;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.mapper.post.PostResponseMapper;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -51,14 +49,14 @@ public class StatisticService {
         return accountResponseMapper.map(requestDto, accountMonthStatistics, accountStatistic);
     }
 
-    public StatisticResponseDto getCommentStatistic(CommentStatisticRequestDto requestDto) {
+    public StatisticResponseDto getCommentStatistic(PostStatisticRequestDto requestDto) {
         List<CommentMonthStatistic> commentMonthStatistics = commentStatisticService
                 .findCommentMonthStatistics(requestDto);
         CommentStatistic commentStatistic = commentStatisticService.findCommentStatistic(requestDto);
         return commentResponseMapper.map(requestDto, commentMonthStatistics, commentStatistic);
     }
 
-    public StatisticResponseDto getLikeStatistic(LikeStatisticRequestDto requestDto) {
+    public StatisticResponseDto getLikeStatistic(PostStatisticRequestDto requestDto) {
         List<LikeMonthStatistic> likeMonthStatistics = likeStatisticService
                 .findLikeMonthStatistics(requestDto);
         LikeStatistic likeStatistic = likeStatisticService

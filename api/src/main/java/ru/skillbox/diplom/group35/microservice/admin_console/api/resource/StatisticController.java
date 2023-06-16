@@ -10,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticRequestDto;
 import ru.skillbox.diplom.group35.microservice.account.api.dto.AccountStatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
 
 @SecurityRequirement(name = "JWT")
 @Tag(name = "Statistic service", description = "Работа со статистикой")
@@ -29,11 +27,11 @@ public interface StatisticController {
 
     @GetMapping("/statistic/comment")
     @Operation(description = "Получение статистики комментариев")
-    ResponseEntity<StatisticResponseDto> getCommentStatistic(CommentStatisticRequestDto commentStatisticRequestDto);
+    ResponseEntity<StatisticResponseDto> getCommentStatistic(PostStatisticRequestDto PostStatisticRequestDto);
 
     @GetMapping("/statistic/like")
     @Operation(description = "Получение статистики лайков")
-    ResponseEntity<StatisticResponseDto> getLikeStatistic(LikeStatisticRequestDto likeStatisticRequestDto);
+    ResponseEntity<StatisticResponseDto> getLikeStatistic(PostStatisticRequestDto PostStatisticRequestDto);
 
     @GetMapping("/statistic/post")
     @Operation(description = "Получение статистики постов")

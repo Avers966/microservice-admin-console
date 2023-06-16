@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.post.PostMonthStatistic;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.post.PostStatistic;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.post.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
 
 import java.util.List;
 
