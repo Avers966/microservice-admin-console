@@ -43,12 +43,14 @@ public class PostStatisticService {
 
     public PostStatistic findPostStatistic(PostStatisticRequestDto requestDto) {
         ZonedDateTime startCurrentDay = dateTimeUtils.startDay(ZonedDateTime.now());
+        ZonedDateTime startMonth = dateTimeUtils.startMonth(requestDto.getFirstMonth());
+        ZonedDateTime endMonth = dateTimeUtils.endMonth(requestDto.getLastMonth());
         Optional<PostStatistic> foundPostStatistic = loadPostStatistic(requestDto.getDate());
         if (foundPostStatistic.isPresent()) {
             return foundPostStatistic.get();
         }
-        StatisticResponseDto oneMonthStatistic = getRemotePostStatistic(startCurrentDay,
-                startCurrentDay, requestDto.getDate());
+        StatisticResponseDto oneMonthStatistic = getRemotePostStatistic(startMonth,
+                endMonth, requestDto.getDate());
         PostStatistic postStatistic = postStatisticMapper.map(oneMonthStatistic, false);
         if (requestDto.getDate().isBefore(startCurrentDay)) {
             postStatistic = postStatisticRepository.save(postStatistic);

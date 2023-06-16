@@ -43,12 +43,14 @@ public class LikeStatisticService {
 
     public LikeStatistic findLikeStatistic(PostStatisticRequestDto requestDto) {
         ZonedDateTime startCurrentDay = dateTimeUtils.startDay(ZonedDateTime.now());
+        ZonedDateTime startMonth = dateTimeUtils.startMonth(requestDto.getFirstMonth());
+        ZonedDateTime endMonth = dateTimeUtils.endMonth(requestDto.getLastMonth());
         Optional<LikeStatistic> foundLikeStatistic = loadLikeStatistic(requestDto.getDate());
         if (foundLikeStatistic.isPresent()) {
             return foundLikeStatistic.get();
         }
-        StatisticResponseDto oneMonthStatistic = getRemoteLikeStatistic(startCurrentDay,
-                startCurrentDay, requestDto.getDate());
+        StatisticResponseDto oneMonthStatistic = getRemoteLikeStatistic(startMonth,
+                endMonth, requestDto.getDate());
         LikeStatistic likeStatistic = likeStatisticMapper.map(oneMonthStatistic, false);
         if (requestDto.getDate().isBefore(startCurrentDay)) {
             likeStatistic = likeStatisticRepository.save(likeStatistic);
