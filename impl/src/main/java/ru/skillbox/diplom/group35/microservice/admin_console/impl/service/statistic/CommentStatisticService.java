@@ -16,9 +16,9 @@ import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.com
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.comment.CommentStatisticRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.comment.CountCommentPerHourRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.utils.DateTimeUtils;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.comment.CommentStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.resource.client.PostFeignClient;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.post.resource.client.StatisticFeignClient;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -38,10 +38,10 @@ public class CommentStatisticService {
     private final CommentMonthStatisticMapper commentMonthStatisticMapper;
     private final CommentStatisticRepository commentStatisticRepository;
     private final CountCommentPerHourRepository countCommentPerHourRepository;
-    private final PostFeignClient postFeignClient;
+    private final StatisticFeignClient statisticFeignClient;
     private final DateTimeUtils dateTimeUtils;
 
-    public CommentStatistic findCommentStatistic(CommentStatisticRequestDto requestDto) {
+    public CommentStatistic findCommentStatistic(PostStatisticRequestDto requestDto) {
         ZonedDateTime startCurrentDay = dateTimeUtils.startDay(ZonedDateTime.now());
         Optional<CommentStatistic> foundCommentStatistic = loadCommentStatistic(requestDto.getDate());
         if (foundCommentStatistic.isPresent()) {
@@ -57,7 +57,7 @@ public class CommentStatisticService {
         return commentStatistic;
     }
 
-    public List<CommentMonthStatistic> findCommentMonthStatistics(CommentStatisticRequestDto requestDto) {
+    public List<CommentMonthStatistic> findCommentMonthStatistics(PostStatisticRequestDto requestDto) {
         List<CommentMonthStatistic> commentMonthStatistics = new ArrayList<>();
         ZonedDateTime startMonth = dateTimeUtils.startMonth(requestDto.getFirstMonth());
         ZonedDateTime endMonth = dateTimeUtils.endMonth(requestDto.getLastMonth());
@@ -83,11 +83,11 @@ public class CommentStatisticService {
     private StatisticResponseDto getRemoteCommentStatistic(ZonedDateTime firstMonth,
                                                            ZonedDateTime lastMonth,
                                                            ZonedDateTime dateTime) {
-        CommentStatisticRequestDto requestDto = new CommentStatisticRequestDto();
+        PostStatisticRequestDto requestDto = new PostStatisticRequestDto();
         requestDto.setDate(dateTime);
         requestDto.setFirstMonth(firstMonth);
         requestDto.setLastMonth(lastMonth);
-        return postFeignClient.getCommentStatistic(requestDto).getBody();
+        return statisticFeignClient.getCommentStatistic(requestDto).getBody();
     }
 
     public List<CommentMonthStatistic> loadCommentMonthStatistic(ZonedDateTime firstMonth,

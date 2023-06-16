@@ -16,9 +16,9 @@ import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.lik
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.like.LikeMonthStatisticRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.repository.like.LikeStatisticRepository;
 import ru.skillbox.diplom.group35.microservice.admin_console.impl.utils.DateTimeUtils;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
-import ru.skillbox.diplom.group35.microservice.post.resource.client.PostFeignClient;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
+import ru.skillbox.diplom.group35.microservice.post.resource.client.StatisticFeignClient;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -38,10 +38,10 @@ public class LikeStatisticService {
     private final LikeMonthStatisticMapper likeMonthStatisticMapper;
     private final LikeStatisticRepository likeStatisticRepository;
     private final CountLikePerHourRepository countLikePerHourRepository;
-    private final PostFeignClient postFeignClient;
+    private final StatisticFeignClient statisticFeignClient;
     private final DateTimeUtils dateTimeUtils;
 
-    public LikeStatistic findLikeStatistic(LikeStatisticRequestDto requestDto) {
+    public LikeStatistic findLikeStatistic(PostStatisticRequestDto requestDto) {
         ZonedDateTime startCurrentDay = dateTimeUtils.startDay(ZonedDateTime.now());
         Optional<LikeStatistic> foundLikeStatistic = loadLikeStatistic(requestDto.getDate());
         if (foundLikeStatistic.isPresent()) {
@@ -49,15 +49,15 @@ public class LikeStatisticService {
         }
         StatisticResponseDto oneMonthStatistic = getRemoteLikeStatistic(startCurrentDay,
                 startCurrentDay, requestDto.getDate());
-        LikeStatistic liketStatistic = likeStatisticMapper.map(oneMonthStatistic, false);
+        LikeStatistic likeStatistic = likeStatisticMapper.map(oneMonthStatistic, false);
         if (requestDto.getDate().isBefore(startCurrentDay)) {
-            liketStatistic = likeStatisticRepository.save(liketStatistic);
-            saveCountPerHour(oneMonthStatistic.getCountPerHours(), liketStatistic);
+            likeStatistic = likeStatisticRepository.save(likeStatistic);
+            saveCountPerHour(oneMonthStatistic.getCountPerHours(), likeStatistic);
         }
-        return liketStatistic;
+        return likeStatistic;
     }
 
-    public List<LikeMonthStatistic> findLikeMonthStatistics(LikeStatisticRequestDto requestDto) {
+    public List<LikeMonthStatistic> findLikeMonthStatistics(PostStatisticRequestDto requestDto) {
         List<LikeMonthStatistic> likeMonthStatistics = new ArrayList<>();
         ZonedDateTime startMonth = dateTimeUtils.startMonth(requestDto.getFirstMonth());
         ZonedDateTime endMonth = dateTimeUtils.endMonth(requestDto.getLastMonth());
@@ -83,11 +83,11 @@ public class LikeStatisticService {
     private StatisticResponseDto getRemoteLikeStatistic(ZonedDateTime firstMonth,
                                                         ZonedDateTime lastMonth,
                                                         ZonedDateTime dateTime) {
-        LikeStatisticRequestDto requestDto = new LikeStatisticRequestDto();
+        PostStatisticRequestDto requestDto = new PostStatisticRequestDto();
         requestDto.setDate(dateTime);
         requestDto.setFirstMonth(firstMonth);
         requestDto.setLastMonth(lastMonth);
-        return postFeignClient.getLikeStatistic(requestDto).getBody();
+        return statisticFeignClient.getLikeStatistic(requestDto).getBody();
     }
 
     public List<LikeMonthStatistic> loadLikeMonthStatistic(ZonedDateTime firstMonth,

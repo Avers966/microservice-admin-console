@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 @Getter
 @Setter
 @Component
-@ConfigurationProperties(prefix = "scheduler")
-public class JobsInfoConfig {
+@ConfigurationProperties(prefix = "scheduler.delayedpost")
+public class DelayedPostInfoConfig {
     private String name;
     private String cron;
     private String className;

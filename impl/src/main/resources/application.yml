@@ -51,9 +51,14 @@ spring:
             threadCount: 1
 
 scheduler:
-  name: BirthDayNotificationJob
-  cron: "0 0 0 * * ?"
-  className: ru.skillbox.diplom.group35.microservice.admin_console.impl.service.scheduler.jobs.BirthDayNotificationJob
+  birthday:
+    name: BirthDayNotificationJob
+    cron: "0 0 0 * * ?"
+    className: ru.skillbox.diplom.group35.microservice.admin_console.impl.service.scheduler.jobs.BirthDayNotificationJob
+  delayedpost:
+    name: DelayedPostJob
+    cron: "0/30 * * * * ?"
+    className: ru.skillbox.diplom.group35.microservice.admin_console.impl.service.scheduler.jobs.DelayPostJob
 
 cloudinary:
   config:

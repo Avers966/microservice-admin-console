@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.like.LikeMonthStatistic;
 import ru.skillbox.diplom.group35.microservice.admin_console.domain.model.like.LikeStatistic;
-import ru.skillbox.diplom.group35.microservice.post.dto.StatisticResponseDto;
-import ru.skillbox.diplom.group35.microservice.post.dto.like.LikeStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.PostStatisticRequestDto;
+import ru.skillbox.diplom.group35.microservice.post.dto.statistic.StatisticResponseDto;
 
 import java.util.List;
 
@@ -22,7 +22,7 @@ public abstract class LikeResponseMapper {
     @Autowired
     private LikeMonthStatisticMapper likeMonthStatisticMapper;
 
-    public StatisticResponseDto map(LikeStatisticRequestDto requestDto,
+    public StatisticResponseDto map(PostStatisticRequestDto requestDto,
                                     List<LikeMonthStatistic> likeMonthStatistics,
                                     LikeStatistic likeStatistic) {
         StatisticResponseDto responseDto = new StatisticResponseDto();
